@@ -1,17 +1,39 @@
 {
-  "name": "main",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
+  "engine": {
+    "node": ">=14.0.0",
+    "yarn": ">=1.22.0",
+    "npm": "please-use-yarn"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.8",
+    "@fullcalendar/daygrid": "^6.1.8",
+    "@fullcalendar/google-calendar": "^6.1.8",
+    "@fullcalendar/react": "^6.1.8",
+    "@google-cloud/storage": "^7.0.0",
+    "axios": "^1.4.0",
+    "data-fns": "^1.1.0",
+    "date-fns": "^2.30.0",
+    "formidable": "^3.5.0",
+    "googleapis": "^123.0.0",
+    "husky": "^8.0.3",
+    "mongoose": "^7.4.1",
     "next": "13.4.12",
+    "nodemailer": "^6.9.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
+    "sharp": "^0.32.4"
   },
   "devDependencies": {
     "eslint": "8.45.0",

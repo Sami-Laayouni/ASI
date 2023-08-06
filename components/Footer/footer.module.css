@@ -1,0 +1,75 @@
+.containerFooter {
+  width: 100vw;
+  height: 100%;
+  background-color: var(--accent-color);
+  display: grid;
+  grid-template-columns: 45% 55%;
+}
+/* ======== Contact Form ========= */
+.contactForm {
+  padding-left: 20px;
+  padding-top: 20px;
+  padding-right: 20px;
+  color: var(--default-white-color);
+}
+.contactForm h1 {
+  font-size: 2rem;
+}
+.labels {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  gap: 20px;
+  padding-right: 40px;
+}
+.contactForm form input {
+  display: block;
+  padding-left: 10px;
+  width: 100%;
+  height: 35px;
+  outline: none;
+  margin-top: 10px;
+  font-family: var(--default-font-family);
+}
+.contactForm form label {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+.contactForm form textarea {
+  width: 95%;
+  margin-top: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  outline: none;
+  font-family: var(--default-font-family);
+  line-height: 150%;
+
+  height: 150px;
+  display: block;
+  resize: none;
+}
+.contactForm form button {
+  padding: 13px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  background-color: var(--default-white-color);
+  border: none;
+}
+.bottom img {
+  margin-right: 20px;
+}
+.veryBottom {
+  width: 100%;
+  height: fit-content;
+  background-color: var(--secondary-color);
+  color: var(--default-white-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+@media all and (max-width: 767px) {
+  .containerFooter {
+    grid-template-columns: 100%;
+  }
+}

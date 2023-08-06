@@ -1,0 +1,11 @@
+/* Lato */
+@font-face {
+  font-family: "Baskerville";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Baskerville"),
+    url("/assets/fonts/Baskerville/regular.woff2") format("woff2"),
+    url("/assets/fonts/Baskerville/regular.woff") format("woff"),
+    url("/assets/fonts/Baskerville/regular.ttf") format("ttf");
+}

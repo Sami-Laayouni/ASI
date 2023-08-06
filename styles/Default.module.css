@@ -1,0 +1,200 @@
+.background {
+  width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.5);
+  animation: zoomIn 2s forwards;
+}
+.header {
+  z-index: 0;
+  max-height: 100vh;
+  overflow: hidden;
+}
+.quote {
+  position: absolute;
+  top: 67%;
+  left: 50%;
+  font-size: 1.1rem;
+  transform: translate(-50%, -50%) translateY(40px);
+  color: white;
+  text-align: center;
+  font-family: var(--quote-font-family);
+  text-shadow: 3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8), 0px 4px 7px rgba(81, 67, 21, 0.8);
+  animation: fadeUp 2s forwards; /* Animation on load, duration 2 seconds */
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(40px); /* Move the element 20px down */
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0); /* Move the element back to its original position */
+  }
+}
+@keyframes zoomIn {
+  0% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.titleText {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  color: white;
+  text-shadow: 3px 0px 7px rgba(81, 67, 21, 0.8),
+    -3px 0px 7px rgba(81, 67, 21, 0.8), 0px 4px 7px rgba(81, 67, 21, 0.8);
+}
+.titleText::after {
+  content: "";
+  position: absolute;
+  bottom: -3px; /* Adjust the value to control the distance of underline from the text */
+  left: -10%;
+  width: 0%;
+  height: 3px; /* Adjust the value to control the thickness of the underline */
+  background-color: var(--accent-color);
+  animation: revealUnderline 2s forwards; /* Animation on load, duration 2 seconds */
+}
+
+@keyframes revealUnderline {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 120%;
+  }
+}
+
+.container {
+  width: 100%;
+  height: fit-content;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: var(--default-white-color);
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.container p {
+  line-height: 200%;
+  padding-right: 360px;
+}
+.underline_text {
+  position: relative;
+  display: inline-block;
+}
+.underline_text::after {
+  content: "";
+  position: absolute;
+  bottom: -6px; /* Adjust the value to control the distance of underline from the text */
+  left: 0;
+  width: 35%;
+  height: 2px; /* Adjust the value to control the thickness of the underline */
+  background-color: var(--accent-color);
+}
+.right {
+  position: absolute;
+  width: 330px;
+  background-color: var(--accent-color);
+  height: fit-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  top: 120vh;
+  right: 60px;
+  color: var(--default-white-color);
+}
+.redContainer {
+  width: 100%;
+  background-color: var(--accent-color);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 150px;
+  padding-right: 150px;
+  color: var(--default-white-color);
+}
+.redContainer h1 {
+  text-align: center;
+  font-family: var(--quote-font-family);
+}
+.redContainer ul {
+  list-style: none;
+  text-align: center;
+}
+.redContainer ul li {
+  margin-top: 40px;
+}
+.whiteContainer {
+  width: 100%;
+  background-color: var(--default-white-color);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-left: 150px;
+  padding-right: 150px;
+}
+.whiteContainer h1 {
+  text-align: center;
+  color: var(--accent-color);
+  font-family: var(--quote-font-family);
+}
+.grid {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  gap: 20px;
+  list-style: "none";
+}
+.gridContainer {
+  padding-left: 150px;
+  padding-right: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+@media all and (max-width: 767px) {
+  .titleText {
+    text-align: center;
+    top: 40%;
+  }
+  .quote {
+    top: 70%;
+    line-height: 200%;
+  }
+  .container p {
+    padding-right: 0px;
+  }
+  .right {
+    display: block;
+    position: static;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+  }
+  .redContainer {
+    padding-left: 100px;
+    padding-right: 100px;
+    text-align: center;
+  }
+  .redContainer ul {
+    padding: 0px;
+  }
+  .grid {
+    grid-template-columns: 100%;
+  }
+  .grid li {
+    height: 100%;
+    width: 100%;
+  }
+  .gridContainer {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}

@@ -4,23 +4,21 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  overflow-x: hidden;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 * {
   box-sizing: border-box;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
+:root {
+  --accent-color: #7b2f28;
+  --secondary-color: #531d19;
+  --t-accent-color: #7b2f28b9;
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+  --default-white-color: white;
+  --default-font-family: "Arial";
+  --quote-font-family: "Baskerville";
 }
