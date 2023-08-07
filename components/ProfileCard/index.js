@@ -20,7 +20,7 @@ export default function ProfileCard({ data }) {
           setData(data);
         }}
       >
-        <img src={data?.image_link}></img>
+        <img alt="Image" src={data?.image_link}></img>
       </div>
       <div className={style.contain}>
         <h1>{data?.full_name}</h1>

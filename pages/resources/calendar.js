@@ -1,9 +1,8 @@
 import style from "../../styles/Default.module.css";
 import GoogleCalendar from "../../components/Calendar";
 export default function Calendar() {
-  const apiKey = "AIzaSyBh-YWiLGw-MHu4MXaTncCQhD8m_GnRS-g";
-  const calendarId =
-    "95d242aa440d9cc73c9b2b431441c3e388850629c8d1bbea60ff63b3ee7c22ac@group.calendar.google.com";
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const calendarId = process.env.NEXT_PUBLIC_CALENDAR_ID;
   return (
     <>
       <section className={style.header}>

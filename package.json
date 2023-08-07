@@ -12,8 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write .",
-    "prepare": "husky install"
+    "prettier": "prettier --write ."
   },
   "dependencies": {
     "@fullcalendar/core": "^6.1.8",
@@ -26,7 +25,6 @@
     "date-fns": "^2.30.0",
     "formidable": "^3.5.0",
     "googleapis": "^123.0.0",
-    "husky": "^8.0.3",
     "mongoose": "^7.4.1",
     "next": "13.4.12",
     "nodemailer": "^6.9.4",
