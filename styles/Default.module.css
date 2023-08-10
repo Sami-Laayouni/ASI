@@ -152,6 +152,7 @@
   grid-template-columns: 33% 33% 33%;
   gap: 20px;
   list-style: "none";
+  padding: 0;
 }
 .gridContainer {
   padding-left: 150px;
@@ -159,6 +160,24 @@
   margin-top: 30px;
   margin-bottom: 30px;
 }
+.selectRole {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 50% 50%;
+}
+.selectRole div {
+  background-color: var(--accent-color);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-left: 20px;
+}
+
 @media all and (max-width: 767px) {
   .titleText {
     text-align: center;
