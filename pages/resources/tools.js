@@ -62,7 +62,7 @@ export default function Tools() {
           {tools.map(function (value) {
             if (value.role == "all" || value.role == role || role == "all") {
               return (
-                <Link href={value.url} target="_blank">
+                <Link key={value.name} href={value.url} target="_blank">
                   <li
                     style={{
                       width: "100%",
