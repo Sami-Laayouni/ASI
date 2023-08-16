@@ -4,8 +4,10 @@ import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Events from "../components/Events";
 import axios from "axios";
+import MediaCard from "../components/MediaCard";
+import BlogCard from "../components/BlogCard";
 
-export default function Home({ events }) {
+export default function Home({ events, media }) {
   const images = [
     "/assets/images/Header/background.jpg",
     "/assets/images/Header/background2.webp",
@@ -13,6 +15,8 @@ export default function Home({ events }) {
     "/assets/images/Header/background4.jpg",
   ];
   const [current, setCurrent] = useState(0);
+  const [blog, setBlogs] = useState(null);
+
   useEffect(() => {
     const backgroundImage = document.getElementById("backgroundImage");
     const loadingBar = document.getElementById("loadingBar");
@@ -73,7 +77,9 @@ export default function Home({ events }) {
     return () => clearInterval(typingInterval);
   }, [quoteIndex]);
 
-  const containerRef = useRef(null); // Create a ref for the <ul> container
+  const containerRef = useRef(null);
+  const containerRef1 = useRef(null);
+  const containerRef2 = useRef(null);
 
   const handleScrollLeft = () => {
     // Scroll the <ul> container to the left
@@ -84,6 +90,37 @@ export default function Home({ events }) {
     // Scroll the <ul> container to the right
     containerRef.current.scrollLeft += 200; // You can adjust the scroll amount (200 in this example)
   };
+  const handleScrollLeft1 = () => {
+    // Scroll the <ul> container to the left
+    containerRef1.current.scrollLeft -= 200; // You can adjust the scroll amount (200 in this example)
+  };
+
+  const handleScrollRight1 = () => {
+    // Scroll the <ul> container to the right
+    containerRef1.current.scrollLeft += 200; // You can adjust the scroll amount (200 in this example)
+  };
+
+  const handleScrollLeft2 = () => {
+    // Scroll the <ul> container to the left
+    containerRef2.current.scrollLeft -= 200; // You can adjust the scroll amount (200 in this example)
+  };
+
+  const handleScrollRight2 = () => {
+    // Scroll the <ul> container to the right
+    containerRef2.current.scrollLeft += 200; // You can adjust the scroll amount (200 in this example)
+  };
+
+  useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("/api/blogs/getBlogs", {
+        method: "GET",
+      });
+      if (response.ok) {
+        setBlogs(await response.json());
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -227,6 +264,119 @@ export default function Home({ events }) {
           ></iframe>
         </div>
       </section>
+      <section style={{ position: "relative" }} className={style.gallery}>
+        <h1>Gallery</h1>
+
+        <div
+          style={{ position: "relative" }}
+          onMouseEnter={() => {
+            document.getElementById("left1").style.display = "block";
+            document.getElementById("right1").style.display = "block";
+          }}
+          onMouseLeave={() => {
+            document.getElementById("left1").style.display = "none";
+            document.getElementById("right1").style.display = "none";
+          }}
+        >
+          <button className={style.left} onClick={handleScrollLeft1} id="left1">
+            {"<"}
+          </button>
+          <div
+            style={{
+              width: "100%",
+              height: "fit-content",
+              overflowX: "hidden",
+              overflowY: "hidden",
+              marginTop: "40px",
+              whiteSpace: "nowrap",
+              paddingBottom: "10px",
+            }}
+            ref={containerRef1}
+          >
+            {media?.map((media, index) => (
+              <MediaCard key={index} media={media} />
+            ))}
+          </div>
+          <button
+            className={style.right}
+            onClick={handleScrollRight1}
+            id="right1"
+          >
+            {">"}
+          </button>
+        </div>
+      </section>
+      <section className={style.blog} id="blog">
+        <h1>Blogs</h1>
+        <div
+          style={{ position: "relative" }}
+          onMouseEnter={() => {
+            document.getElementById("left2").style.display = "block";
+            document.getElementById("right2").style.display = "block";
+          }}
+          onMouseLeave={() => {
+            document.getElementById("left2").style.display = "none";
+            document.getElementById("right2").style.display = "none";
+          }}
+        >
+          <button
+            style={{
+              background: "white",
+              color: "var(--accent-color)",
+              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+            }}
+            className={style.left}
+            onClick={handleScrollLeft2}
+            id="left2"
+          >
+            {"<"}
+          </button>
+          <div
+            style={{
+              width: "100%",
+              height: "fit-content",
+              overflowX: "hidden",
+              overflowY: "hidden",
+              marginTop: "40px",
+              whiteSpace: "nowrap",
+              paddingBottom: "10px",
+            }}
+            ref={containerRef2}
+          >
+            {blog?.map(function (value) {
+              return <BlogCard value={value} />;
+            })}
+            {blog?.length == 0 && (
+              <div
+                style={{
+                  width: "100%",
+                  textAlign: "center",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  color: "white",
+                  height: "200px",
+                }}
+              >
+                <i>No blogs to display</i>
+              </div>
+            )}
+          </div>
+
+          <button
+            style={{
+              background: "white",
+              color: "var(--accent-color)",
+              boxShadow: "rgba(100, 100, 111, 0.2) 0px 7px 29px 0px",
+            }}
+            className={style.right}
+            onClick={handleScrollRight2}
+            id="right2"
+          >
+            {">"}
+          </button>
+        </div>
+      </section>
       {/* Upcoming events */}
       <section className={style.upcomingEvents_container}>
         <h1>Upcoming Events</h1>
@@ -305,18 +455,25 @@ export async function getStaticProps() {
   const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
   const currentTime = new Date().toISOString();
   const MAX_RESULTS = parseInt(process.env.NEXT_PUBLIC_CALENDAR_MAX_EVENTS);
+  const userToken = process.env.CLIENT_TOKEN;
+  const apiUrl = `https://graph.instagram.com/me/media?fields=id,media_type,media_url,permalink,comment_count&access_token=${userToken}`;
 
   try {
     const response = await axios.get(
       `https://www.googleapis.com/calendar/v3/calendars/${CALENDAR_ID}/events?key=${API_KEY}&timeMin=${currentTime}&maxResults=${MAX_RESULTS}&fields=items(summary,description,start,end,location,htmlLink)`
     );
+    const response2 = await fetch(apiUrl);
+    const data = await response2.json();
+    const mediaData = data.data;
 
     const events = response.data.items;
+
     // Cache the fetched data
     cachedEvents = events;
     return {
       props: {
         events,
+        media: mediaData,
       },
     };
   } catch (error) {

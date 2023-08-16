@@ -104,6 +104,20 @@ export default function Faculty() {
           >
             Early Years
           </li>
+          <li
+            onClick={() => {
+              addRoutePath("belongs", "officestaff");
+            }}
+          >
+            Office Staff
+          </li>
+          <li
+            onClick={() => {
+              addRoutePath("belongs", "facultymembers");
+            }}
+          >
+            Faculty Members
+          </li>
         </ul>
       </section>
       <section>

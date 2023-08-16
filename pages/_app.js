@@ -1,5 +1,7 @@
 import "../styles/globals.css";
 import "../styles/fonts.css";
+import "../styles/quill.css";
+
 import Head from "next/head";
 import NavBar from "../components/NavBar";
 import dynamic from "next/dynamic";
@@ -18,9 +20,9 @@ function ASI({ Component, pageProps }) {
         />
         <meta
           name="keywords"
-          content="Ifrane, School, English, American, Morocco, Nursey-12"
+          content="American School, Dual Enrollment, Ifrane, School, English, American, Morocco, Nursey-12"
         />
-        <meta charset="UTF-8" />
+        <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
         <meta property="og:title" content="Al Akhawayn School of Ifrane" />

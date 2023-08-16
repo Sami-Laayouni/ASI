@@ -6,7 +6,14 @@ export default function ProfileCard({ data }) {
   const [open, setOpen] = userInfoModal;
   const [datas, setData] = userInfoModalInfo;
   return (
-    <div className={style.container} onClick={() => {}}>
+    <div
+      className={style.container}
+      style={{ cursor: "pointer" }}
+      onClick={() => {
+        setOpen(true);
+        setData(data);
+      }}
+    >
       <div
         style={{
           maxHeight: "100%",
@@ -34,6 +41,10 @@ export default function ProfileCard({ data }) {
                 ? "Middle School"
                 : value.trim() == "elementary"
                 ? "Elementary"
+                : value.trim() == "officestaff"
+                ? "Office Staff"
+                : value.trim() == "facultymembers"
+                ? "Faculty Members"
                 : "Early Years"}
             </h3>
           );

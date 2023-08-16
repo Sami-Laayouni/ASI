@@ -42,6 +42,10 @@ export default function UserInfo() {
                   ? "Middle School"
                   : value.trim() == "elementary"
                   ? "Elementary"
+                  : value.trim() == "officestaff"
+                  ? "Office Staff"
+                  : value.trim() == "facultymembers"
+                  ? "Faculty Members"
                   : "Early Years"}
               </h2>
             );

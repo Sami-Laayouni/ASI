@@ -14,9 +14,10 @@ a {
   color: inherit;
 }
 :root {
-  --accent-color: #7b2f28;
-  --secondary-color: #531d19;
-  --t-accent-color: #7b2f28b9;
+  --accent-color: #1c0d52;
+  --secondary-color: white;
+  --tertiary-color: orange;
+  --t-accent-color: #1c0d52b9;
 
   --default-white-color: white;
   --default-font-family: "Arial";

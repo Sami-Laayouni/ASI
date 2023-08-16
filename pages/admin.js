@@ -8,6 +8,8 @@ export default function Admin() {
     elementary: false,
     middleschool: false,
     highschool: false,
+    facultymember: false,
+    officestaff: false,
   });
 
   const handleCheckboxChange = (event) => {
@@ -221,6 +223,28 @@ export default function Admin() {
             onChange={handleCheckboxChange}
           />
           High School
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="officestaff"
+            value="office-staff"
+            checked={checkboxValues.officestaff}
+            onChange={handleCheckboxChange}
+            style={{ marginTop: "20px" }}
+          />
+          Office Staff
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            name="facultymember"
+            value="faculty-member"
+            checked={checkboxValues.facultymember}
+            onChange={handleCheckboxChange}
+            style={{ marginTop: "20px" }}
+          />
+          Faculty Member
         </label>
         <br />
 

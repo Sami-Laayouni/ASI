@@ -109,14 +109,14 @@ export default function Footer() {
             </div>
             <div style={{ marginTop: "20px", paddingRight: "20px" }}>
               <label>
-                Select number of kids {!visit ? "concerned" : "visiting"}
+                Select number of childs {!visit ? "concerned" : "visiting"}
               </label>
               <input
                 id="kids"
                 type="number"
                 min={0}
                 max={100}
-                placeholder={`Number of kids concerned ${
+                placeholder={`Number of childs concerned ${
                   !visit ? "concerned" : "visiting"
                 }`}
                 onChange={(e) => {
@@ -140,12 +140,12 @@ export default function Footer() {
                       key={i}
                     >
                       <input
-                        placeholder={`Kid number ${i + 1} name`}
+                        placeholder={`Children number ${i + 1} name`}
                         onChange={(e) => handleKidNameChange(i, e.target.value)}
                         required
                       ></input>
                       <input
-                        placeholder={`Kid number ${i + 1} age`}
+                        placeholder={`Children number ${i + 1} age`}
                         type="number"
                         min={0}
                         required

@@ -164,18 +164,6 @@ export default function navBar() {
             <Link href="/assets/pdf/example_pdf.pdf">
               <div>Handbook</div>
             </Link>
-            <Link href="/assets/pdf/example_pdf.pdf">
-              <div>Early Years Tuition</div>
-            </Link>
-            <Link href="/assets/pdf/example_pdf.pdf">
-              <div>Elementary Tuition</div>
-            </Link>
-            <Link href="/assets/pdf/example_pdf.pdf">
-              <div>Middle School Tuition</div>
-            </Link>
-            <Link href="/assets/pdf/example_pdf.pdf">
-              <div>High School Tuition</div>
-            </Link>
           </div>
         </div>
         {/* Contact Us */}
@@ -211,6 +199,11 @@ export default function navBar() {
               <div>Visit</div>
             </Link>
           </div>
+        </div>
+        <div>
+          <Link href="#blog">
+            <li>Blog</li>
+          </Link>
         </div>
       </ul>
       <div id="menu" className={style.menu}>
@@ -343,18 +336,6 @@ export default function navBar() {
           <Link href="/assets/pdf/example_pdf.pdf">
             <li>Handbook</li>
           </Link>
-          <Link href="/assets/pdf/example_pdf.pdf">
-            <li>Early Years Tuition</li>
-          </Link>
-          <Link href="/assets/pdf/example_pdf.pdf">
-            <li>Elementary Tuition</li>
-          </Link>
-          <Link href="/assets/pdf/example_pdf.pdf">
-            <li>Middle School Tuition</li>
-          </Link>
-          <Link href="/assets/pdf/example_pdf.pdf">
-            <li>High School Tuition</li>
-          </Link>
         </div>
         <li
           onClick={() => {
@@ -367,6 +348,7 @@ export default function navBar() {
         >
           <b>Contact Us</b>
         </li>
+
         <div style={{ display: "none", textAlign: "center" }} id="contactus">
           <Link href="/contact/inquire">
             <li>Inquire</li>

@@ -94,6 +94,146 @@ export default function HighSchool({ events }) {
           </li>
         </ul>
       </section>
+      <section className={style.orangeContainer}>
+        <h1>Course Catalog</h1>
+        <ul>
+          <li
+            onClick={() => {
+              if (document.getElementById("history").style.display == "none") {
+                document.getElementById("history").style.display = "block";
+              } else if (
+                document.getElementById("history").style.display == "block"
+              ) {
+                document.getElementById("history").style.display = "none";
+              } else {
+                document.getElementById("history").style.display = "block";
+              }
+            }}
+          >
+            History/Social Science
+          </li>
+          <section id="history">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (document.getElementById("english").style.display == "none") {
+                document.getElementById("english").style.display = "block";
+              } else if (
+                document.getElementById("english").style.display == "block"
+              ) {
+                document.getElementById("english").style.display = "none";
+              } else {
+                document.getElementById("english").style.display = "block";
+              }
+            }}
+          >
+            English
+          </li>
+          <section id="english">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (document.getElementById("math").style.display == "none") {
+                document.getElementById("math").style.display = "block";
+              } else if (
+                document.getElementById("math").style.display == "block"
+              ) {
+                document.getElementById("math").style.display = "none";
+              } else {
+                document.getElementById("math").style.display = "block";
+              }
+            }}
+          >
+            Mathematics
+          </li>
+          <section id="math">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (document.getElementById("science").style.display == "none") {
+                document.getElementById("science").style.display = "block";
+              } else if (
+                document.getElementById("science").style.display == "block"
+              ) {
+                document.getElementById("science").style.display = "none";
+              } else {
+                document.getElementById("science").style.display = "block";
+              }
+            }}
+          >
+            Science
+          </li>
+          <section id="science">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (document.getElementById("french").style.display == "none") {
+                document.getElementById("french").style.display = "block";
+              } else if (
+                document.getElementById("french").style.display == "block"
+              ) {
+                document.getElementById("french").style.display = "none";
+              } else {
+                document.getElementById("french").style.display = "block";
+              }
+            }}
+          >
+            French
+          </li>
+          <section id="french">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (document.getElementById("arabic").style.display == "none") {
+                document.getElementById("arabic").style.display = "block";
+              } else if (
+                document.getElementById("arabic").style.display == "block"
+              ) {
+                document.getElementById("arabic").style.display = "none";
+              } else {
+                document.getElementById("arabic").style.display = "block";
+              }
+            }}
+          >
+            Arabic
+          </li>
+          <section id="arabic">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+          <li
+            onClick={() => {
+              if (
+                document.getElementById("electives").style.display == "none"
+              ) {
+                document.getElementById("electives").style.display = "block";
+              } else if (
+                document.getElementById("electives").style.display == "block"
+              ) {
+                document.getElementById("electives").style.display = "none";
+              } else {
+                document.getElementById("electives").style.display = "block";
+              }
+            }}
+          >
+            Electives
+          </li>
+          <section id="electives">
+            <div>Course 1</div>
+            <div>Course 2</div>
+          </section>
+        </ul>
+      </section>
       <section className={style.whiteContainer}>
         <h1>Upcoming High School Events</h1>
         {events?.length > 0 && (
