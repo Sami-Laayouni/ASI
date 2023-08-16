@@ -344,7 +344,7 @@ export default function Home({ events, media }) {
             ref={containerRef2}
           >
             {blog?.map(function (value) {
-              return <BlogCard value={value} />;
+              return <BlogCard key={value._id} value={value} />;
             })}
             {blog?.length == 0 && (
               <div
