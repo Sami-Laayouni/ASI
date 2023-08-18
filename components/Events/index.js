@@ -21,7 +21,7 @@ export default function Events({ data }) {
             : isSameDay(nextDayDate, endDate)
             ? `${format(startDate, "MMMM dd, yyyy")}`
             : ` ${format(startDate, "MMMM dd, yyyy")} - 
-          ${format(endDate, "MMMM dd, yyyy")}`}
+              ${format(addDays(endDate, -1), "MMMM dd, yyyy")}`}
         </p>
 
         <p className={style.desc}>
