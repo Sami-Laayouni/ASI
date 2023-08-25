@@ -216,7 +216,7 @@ export default function AdminBlog() {
       >
         <h1>Edit Blog</h1>
         {blogs?.map(function (value) {
-          return <BlogCard type="admin" value={value} />;
+          return <BlogCard key={value._id} type="admin" value={value} />;
         })}
         <br></br>
       </section>
