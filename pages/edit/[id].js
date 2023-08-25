@@ -1,42 +1,36 @@
-import style from "../styles/Default.module.css";
-import { useState, useEffect } from "react";
+import style from "../../styles/Default.module.css";
 import dynamic from "next/dynamic";
 const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
-import BlogCard from "../components/BlogCard";
-export default function AdminBlog() {
-  const [error, setError] = useState("");
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+export default function Edit() {
   const [content, setContent] = useState("");
-  const [url, setUrl] = useState("");
-  const [blogs, setBlogs] = useState(null);
-
-  const uploadImage = async (e) => {
-    const file = e.target.files[0];
-    const img = new Image();
-    img.src = URL.createObjectURL(file);
-    img.onload = async function () {
-      // Check if the image is vertical (portrait)
-      const formData = new FormData();
-      formData.append("image", file);
-      const response = await fetch("/api/gcs/upload_image", {
-        method: "POST",
-        body: formData,
-      });
-
-      const { url } = await response.json();
-      setUrl(url);
-    };
-  };
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const router = useRouter();
   useEffect(() => {
     async function fetchData() {
-      const response = await fetch("/api/blogs/getBlogs", {
-        method: "GET",
+      const id = router.query.id;
+      const response = await fetch("/api/blogs/singleBlog", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+        }),
       });
       if (response.ok) {
-        setBlogs(await response.json());
+        const data = await response.json();
+        setTitle(data.title);
+        setAuthor(data.author);
+        setContent(data.html);
       }
     }
-    fetchData();
-  }, []);
+    if (router.query.id) {
+      fetchData();
+    }
+  }, [router]);
   return (
     <>
       <section className={style.header}>
@@ -47,53 +41,13 @@ export default function AdminBlog() {
           className={style.background}
         ></img>
         <h1 className={style.titleText} id="eager">
-          Write a Blog
+          Edit Blog
         </h1>
       </section>
       <form
-        id="confirm"
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (
-            document.getElementById("adminPin").value ==
-            process.env.NEXT_PUBLIC_ADMIN_PASSWORD
-          ) {
-            document.getElementById("confirm").style.display = "none";
-            document.getElementById("write").style.display = "flex";
-            document.getElementById("editBlog").style.display = "flex";
-          } else {
-            setError("Pin incorrect");
-          }
-        }}
-        style={{
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h1>Confirm</h1>
-        <input
-          style={{
-            outline: "none",
-            paddingLeft: "10px",
-            lineHeight: "20px",
-            borderRadius: "3px",
-            border: "1px solid black",
-          }}
-          id="adminPin"
-          placeholder="Enter Admin Pin"
-          required
-        ></input>
-        <p>{error}</p>
-        <button type="submit">Submit</button>
-      </form>
-      <form
         id="write"
         style={{
-          display: "none",
+          display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
@@ -102,16 +56,16 @@ export default function AdminBlog() {
         onSubmit={async (e) => {
           e.preventDefault();
           document.getElementById("submit").innerText = "Saving...";
-          const response = await fetch("/api/blogs/createBlog", {
+          const response = await fetch("/api/blogs/editBlog", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
             body: JSON.stringify({
-              title: document.getElementById("title").value,
-              author: document.getElementById("article").value,
-              html: content,
-              image_link: url,
+              id: router.query.id,
+              title: title,
+              author: author,
+              content: content,
             }),
           });
           if (response.ok) {
@@ -133,7 +87,11 @@ export default function AdminBlog() {
           }}
           required
           id="title"
-          placeholder="Enter title of Blog"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          placeholder="Edit title of Blog"
         />
         <input
           style={{
@@ -147,20 +105,17 @@ export default function AdminBlog() {
           }}
           required
           id="article"
-          placeholder="Author of article"
+          value={author}
+          onChange={(e) => {
+            setAuthor(e.target.value);
+          }}
+          placeholder="Edit Author of article"
         />
-        <span style={{ marginTop: "30px" }}>Upload cover picture</span>
-        <input
-          style={{ marginTop: "30px" }}
-          accept="image/*"
-          type="file"
-          onChange={uploadImage}
-          required
-        />
+
         <ReactQuill
           id="reactQuill"
           theme="snow"
-          placeholder="Start something wonderful..."
+          placeholder="Edit your text"
           value={content}
           onChange={(e) => setContent(e)}
           modules={{
@@ -202,24 +157,9 @@ export default function AdminBlog() {
             color: "white",
           }}
         >
-          Save
+          Edit
         </button>
       </form>
-      <section
-        id="editBlog"
-        style={{
-          display: "none",
-          justifyContent: "center",
-          alignItems: "center",
-          flexDirection: "column",
-        }}
-      >
-        <h1>Edit Blog</h1>
-        {blogs?.map(function (value) {
-          return <BlogCard type="admin" value={value} />;
-        })}
-        <br></br>
-      </section>
     </>
   );
 }
